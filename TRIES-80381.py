@@ -10,7 +10,7 @@ parser.add_argument("Host_User_Name", type=str, help="Provide Host Username")
 parser.add_argument("Host_User_Password", type=str, help="Provide Host Password")
 parser.add_argument("repo_cloned_path", type=str, help="Provide git repo cloned path")
 
-'''execute locally un-uncomment below lines'''
+'''to execute locally un-uncomment below lines'''
 # host_ip = input("enter the host_ip\n")
 # host_username = input("enter the username\n")
 # host_password = input("enter the password\n")
