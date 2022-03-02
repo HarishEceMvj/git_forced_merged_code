@@ -1,0 +1,10 @@
+pipeline {
+    agent any
+    stages {
+        stage('forced-merge-check') {
+            steps {
+                sh '''cd $WORKSPACE && python3 TRIES-80381.py'''
+            }
+        }
+    }
+}
