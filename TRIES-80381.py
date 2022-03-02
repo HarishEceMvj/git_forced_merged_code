@@ -20,7 +20,7 @@ cmd = f"cd {git_cloned_directory} && {git_cmd}"
 # print(cmd)
 
 # Add all PRs to a list
-Pr_recovered = []  # added one PR to a list, which was forced merged for testing purpose
+Pr_recovered = []  
 stdin, stdout, stderr = ssh1.exec_command(cmd)
 
 # appending all PRs to list
