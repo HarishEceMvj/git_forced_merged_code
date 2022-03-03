@@ -17,7 +17,7 @@ parser.add_argument("full_Git_hub_repository_Name", type=str, default="Matrix/Ma
 # host_ip = input("enter the host_ip\n")
 # host_username = input("enter the username\n")
 # host_password = input("enter the password\n")
-# git_cloned_directory = input("provide git cloned repository path Example. '/home/cyc/cyclone'")
+# repo_tobe_cloned = input("provide git cloned repository path Example. '/home/cyc/cyclone'")
 
 
 # Parse the arguments to local variable from CLI
