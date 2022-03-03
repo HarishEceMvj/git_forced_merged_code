@@ -29,15 +29,17 @@ repo_tobe_cloned = args.full_Git_hub_repository_Name
 
 # get the cloned repo
 git_cloned_directory = "/home/cyc/" + repo_tobe_cloned.split("/")[1]
-print(git_cloned_directory)
+# print(git_cloned_directory)
 # Create a SSH object
 ssh1 = paramiko.SSHClient()
 ssh1.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 ssh1.connect(hostname=host_ip, port=22, username=host_username, password=host_password)
 
 # clone the repository
+command_to_remove_already_exist_repo = "rm -rf "+ git_cloned_directory 
+stdin, stdout, stderr = ssh1.exec_command("rm -rf )
 command_to_clone_repo = "gh repo clone eos2git.cec.lab.emc.com/" + repo_tobe_cloned
-print(command_to_clone_repo)
+# print(command_to_clone_repo)
 # cloning the repository
 stdin, stdout, stderr = ssh1.exec_command(command_to_clone_repo)
 print(stdout.readlines(), stderr.readlines())
