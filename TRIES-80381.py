@@ -37,7 +37,8 @@ ssh1.connect(hostname=host_ip, port=22, username=host_username, password=host_pa
 
 # clone the repository
 command_to_remove_already_exist_repo = "rm -rf "+ git_cloned_directory 
-stdin, stdout, stderr = ssh1.exec_command("rm -rf )
+stdin, stdout, stderr = ssh1.exec_command(command_to_remove_already_exist_repo)
+
 command_to_clone_repo = "gh repo clone eos2git.cec.lab.emc.com/" + repo_tobe_cloned
 # print(command_to_clone_repo)
 # cloning the repository
