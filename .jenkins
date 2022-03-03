@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('forced-merge-check') {
             steps {
-                sh '''cd $WORKSPACE && python3 TRIES-80381.py $HOST_IP $HOST_USER_NAME $PASSWORD $WORKSPACE'''
+                sh '''cd $WORKSPACE && python3 TRIES-80381.py $HOST_IP $HOST_USER_NAME $PASSWORD $REPO'''
             }
         }
     }
