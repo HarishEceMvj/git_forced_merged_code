@@ -1,16 +1,19 @@
 import paramiko
 import argparse
+import time
 
 print(" 1.Pre-requests for execution of commands required 'git cli' tool to be installed on your machine \
         2. git repository to be cloned to host, where force merge going to check")
 
 parser = argparse.ArgumentParser()
 parser.add_argument("Host_IP", type=str, default="10.207.146.173", help="Specify Host_IP")
-parser.add_argument("Host_User_Name", type=str, help="Provide Host Username")
-parser.add_argument("Host_User_Password", type=str, help="Provide Host Password")
-parser.add_argument("repo_cloned_path", type=str, help="Provide git repo cloned path")
+parser.add_argument("Host_User_Name", type=str, default="cyc", help="Provide Host Username")
+parser.add_argument("Host_User_Password", type=str, default="cycpass", help="Provide Host Password")
+parser.add_argument("full_Git_hub_repository_Name", type=str, default="Matrix/Matrix_Tools", help="Provide git repo "
+                                                                                                  "tobe cloned to "
+                                                                                                  "check forced merge")
 
-'''to execute locally un-uncomment below lines'''
+'''execute locally un-uncomment below lines'''
 # host_ip = input("enter the host_ip\n")
 # host_username = input("enter the username\n")
 # host_password = input("enter the password\n")
@@ -22,12 +25,22 @@ args = parser.parse_args()
 host_ip = args.Host_IP
 host_username = args.Host_User_Name
 host_password = args.Host_User_Password
-git_cloned_directory = args.repo_cloned_path
+repo_tobe_cloned = args.full_Git_hub_repository_Name
 
+# get the cloned repo
+git_cloned_directory = "/home/cyc/" + repo_tobe_cloned.split("/")[1]
+print(git_cloned_directory)
 # Create a SSH object
 ssh1 = paramiko.SSHClient()
 ssh1.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 ssh1.connect(hostname=host_ip, port=22, username=host_username, password=host_password)
+
+# clone the repository
+command_to_clone_repo = "gh repo clone eos2git.cec.lab.emc.com/" + repo_tobe_cloned
+print(command_to_clone_repo)
+# cloning the repository
+stdin, stdout, stderr = ssh1.exec_command(command_to_clone_repo)
+print(stdout.readlines(), stderr.readlines())
 
 # Lists all merged PRs number
 git_cmd = 'gh pr list --state merged' + ' | awk ' + """'{ printf "%6s\\n", $1}'"""
